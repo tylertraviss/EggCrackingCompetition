@@ -22,8 +22,8 @@ class EmailSender:
         msg['To'] = recipient_email
         msg['Subject'] = subject
 
-        # Add the email body
-        msg.attach(MIMEText(body, 'plain'))
+        # Add the email body with HTML content
+        msg.attach(MIMEText(body, 'html'))  # Changed to 'html' for proper hyperlink formatting
 
         try:
             # Connect to the SMTP server
@@ -39,6 +39,7 @@ class EmailSender:
         # Get the current date
         current_date = datetime.now()
         
+        # Format the date as "Month Day" (e.g., "November 23")
         formatted_date = current_date.strftime("%B %d")
         
         return formatted_date
@@ -47,5 +48,20 @@ class EmailSender:
         # Get the current date
         formatted_date = self.get_current_date()
 
-        self.send_email(recipient, "Egg Data Request (" + formatted_date + ")", "Test")
+        # Craft the email body with HTML formatting and a clickable hyperlink
+        body = f"""
+        <html>
+        <body>
+            <p>Hi there,</p>
 
+            <p>Please fill out the following form:</p>
+            <a href="https://forms.gle/kWtfifjuDCn85FbP8">Egg Cracking Data Form</a>
+
+            <p>This will help us track the egg cracking progress for today, {formatted_date}.</p>
+
+            <p>Thank you!</p>
+        </body>
+        </html>
+        """
+
+        self.send_email(recipient, f"Egg Data Request ({formatted_date})", body)
