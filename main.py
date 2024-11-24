@@ -1,4 +1,4 @@
-from emails.email_utils import EmailSender
+from utils.email_utils import EmailSender
 
 if __name__ == "__main__":
     # Example usage
