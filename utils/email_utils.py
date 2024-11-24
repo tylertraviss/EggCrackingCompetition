@@ -64,4 +64,5 @@ class EmailSender:
         </html>
         """
 
+
         self.send_email(recipient, f"Egg Data Request ({formatted_date})", body)
