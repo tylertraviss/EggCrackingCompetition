@@ -28,3 +28,8 @@ jobs:
         EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
         EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
       run: python daily.py
+
+    - name: Debug Environment Variables
+      run: echo $EMAIL_ADDRESS
+      env:
+        EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
